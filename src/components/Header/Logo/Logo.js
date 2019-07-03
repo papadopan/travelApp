@@ -11,7 +11,7 @@ const Span = styled.span`
   font-size: 2rem;
   letter-spacing .1rem;
   color: var(--color-grey);
-  margin-left: 1rem;
+  margin-left: 2rem;
 `;
 
 const Img = styled.img`

@@ -18,5 +18,9 @@ html{
     --color-grey: ${props => props.theme.colors.grey};
     --color-shadow: ${props => props.theme.colors.shadow};
 
+    a, li, ul {
+        text-decoration:none;
+        list-style:none;
+    }
 }
 `;

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import NavItem from '../NavItem';
+
 const NavWrapprer = styled.nav`
   display: flex;
   align-items: center;
@@ -9,15 +11,16 @@ const NavWrapprer = styled.nav`
 
 const UL = styled.ul`
   display: flex;
+  align-items: center;
 `;
 
 const Menu = () => {
   return (
     <NavWrapprer>
       <UL>
-        <li>Home</li>
-        <li>Menu</li>
-        <li>Countries</li>
+        <NavItem link="/">Home</NavItem>
+        <NavItem link="/settings">Menu</NavItem>
+        <NavItem link="/vjhbj">Countries</NavItem>
       </UL>
     </NavWrapprer>
   );
