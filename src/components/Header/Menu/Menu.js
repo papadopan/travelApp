@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { FormattedMessage } from 'react-intl';
 import NavItem from '../NavItem';
 
 const NavWrapprer = styled.nav`
@@ -22,7 +22,9 @@ const Menu = () => {
   return (
     <NavWrapprer>
       <UL>
-        <NavItem link="/">Home</NavItem>
+        <NavItem link="/">
+          <FormattedMessage id="dash" defaultMessage="Good Morning" />
+        </NavItem>
         <NavItem link="/settings">Menu</NavItem>
         <NavItem link="/vjhbj">Countries</NavItem>
       </UL>
