@@ -9,7 +9,7 @@ const NavItemWrapper = styled.li`
 
 const NavLinkWrapper = styled(NavLink)`
   font-size: 1.7rem;
-  color: var(--color-white);
+  color: var(--color-secondary);
   padding: 1rem;
   margin: 0 1rem;
   border: 1px solid var(--color-main);
@@ -18,11 +18,8 @@ const NavLinkWrapper = styled(NavLink)`
   font-weigth: light;
 
   &:hover {
-    border-bottom: 1px solid var(--color-white);
+    border-bottom: 1px solid var(--color-secondary);
     cursor: pointer;
-  }
-  &.active {
-    color: blue;
   }
 `;
 

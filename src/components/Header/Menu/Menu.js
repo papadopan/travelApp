@@ -7,6 +7,10 @@ const NavWrapprer = styled.nav`
   display: flex;
   align-items: center;
   padding-right: 5rem;
+
+  @media ${props => props.theme.mediaQueries.medium} {
+    opacity: 0;
+  }
 `;
 
 const UL = styled.ul`

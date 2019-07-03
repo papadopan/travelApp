@@ -8,14 +8,14 @@ const LogoWrapper = styled.div`
 `;
 
 const Span = styled.span`
-  font-size: 2rem;
+  font-size: 3rem;
   letter-spacing .1rem;
-  color: var(--color-grey);
+  color: var(--color-secondary);
   margin-left: 2rem;
 `;
 
 const Img = styled.img`
-  height: 30px;
+  height: 3rem;
 `;
 
 const Logo = () => {
