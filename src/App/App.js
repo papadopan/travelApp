@@ -3,10 +3,10 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import el from 'react-intl/locale-data/el';
-import Layout from './Layout/Layout';
-import Home from './containers/Home';
-import Settings from './containers/Settings';
-import messages from './translations';
+import Layout from '../Layout/Layout';
+import Home from '../containers/Home';
+import Settings from '../containers/Settings';
+import messages from '../translations';
 
 addLocaleData([...en, ...el]);
 

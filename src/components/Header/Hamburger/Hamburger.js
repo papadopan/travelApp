@@ -29,7 +29,7 @@ const StyledHamburger = styled.div`
 
   &:nth-child(1) {
     transform-origin: left center;
-    top: ${props => (props.open ? '-5px' : '0')};
+    top: ${props => (props.open ? '-7px' : '0')};
     left: ${props => (props.open ? '8x' : '0')};
     transform: ${props => (props.open ? 'rotate(45deg)' : 'rotate(0deg)')};
   }
@@ -44,7 +44,7 @@ const StyledHamburger = styled.div`
     transform-origin: left center;
     top: ${props => (props.open ? '30px' : '30px')};
     left: ${props => (props.open ? '2x' : '0')};
-    transform: ${props => (props.open ? 'rotate(-45deg)' : 'rotate(0deg)')};
+    transform: ${props => (props.open ? 'rotate(-48deg)' : 'rotate(0deg)')};
   }
 }
 `;
