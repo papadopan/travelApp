@@ -23,10 +23,14 @@ const Menu = () => {
     <NavWrapprer>
       <UL>
         <NavItem link="/">
-          <FormattedMessage id="dash" defaultMessage="Good Morning" />
+          <FormattedMessage id="header.menu" defaultMessage="Good Morning" />
         </NavItem>
-        <NavItem link="/settings">Menu</NavItem>
-        <NavItem link="/vjhbj">Countries</NavItem>
+        <NavItem link="/settings">
+          <FormattedMessage id="header.countries" defaultMessage="Countries" />
+        </NavItem>
+        <NavItem link="/vjhbj">
+          <FormattedMessage id="header.mymap" defaultMessage="My Map" />
+        </NavItem>
       </UL>
     </NavWrapprer>
   );
