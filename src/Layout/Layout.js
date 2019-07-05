@@ -3,19 +3,19 @@ import styled from 'styled-components';
 
 import Header from '../components/Header';
 
-const MainWrapper = styled.div`
+const StyledLayout = styled.div`
+  min-height: calc(100vh - 10rem);
   width: 100%;
-  min-height: calc(100vh-10rem);
-  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-const Layout = ({ children }) => {
-  return (
-    <React.Fragment>
-      <Header />
-      <MainWrapper>{children}</MainWrapper>
-    </React.Fragment>
-  );
-};
+const Layout = ({ children }) => (
+  <React.Fragment>
+    <Header />
+    <StyledLayout>{children}</StyledLayout>
+  </React.Fragment>
+);
 
 export default Layout;

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "firebase": "^6.2.4",
+    "formik": "^1.5.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-intl": "^2.9.0",
@@ -14,9 +15,11 @@
     "redux": "^4.0.1",
     "redux-firestore": "^0.8.0",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "yup": "^0.27.0"
   },
   "devDependencies": {
+    "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^6.0.0",
