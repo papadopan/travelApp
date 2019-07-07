@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 
 const StyledLogIn = styled.div`
@@ -74,37 +74,39 @@ const validationSchema = yup.object().shape({
     .required()
 });
 
-const LogIn = () => {
+const LogIn = ({ signUp }) => {
   return (
     <StyledLogIn>
       <Formik
         validationSchema={validationSchema}
         initialValues={initialValues}
-        onSubmit={values =>
-          setTimeout(() => {
-            console.log(JSON.stringify(values, null, 2));
-          }, 1000)
-        }
+        onSubmit={values => {
+          signUp({ variables: { username: values.username, email: values.email } });
+        }}
       >
         {({ isSubmiting }) => {
           return (
             <StyledForm>
               <Field name="username">
-                {({ form: { errors }, field }) => {
+                {({ form: { errors, touched }, field }) => {
                   return (
                     <InputWrapper>
                       <StyledInput {...field} type="text" placeholder="username" />
-                      {errors[field.name] ? <StyledError>{errors[field.name]}</StyledError> : null}
+                      {touched[field.name] && errors[field.name] ? (
+                        <StyledError>{errors[field.name]}</StyledError>
+                      ) : null}
                     </InputWrapper>
                   );
                 }}
               </Field>
               <Field name="email">
-                {({ form: { errors }, field }) => {
+                {({ form: { errors, touched }, field }) => {
                   return (
                     <InputWrapper>
                       <StyledInput {...field} type="text" placeholder="email" />
-                      {errors[field.name] ? <StyledError>{errors[field.name]}</StyledError> : null}
+                      {touched[field.name] && errors[field.name] ? (
+                        <StyledError>{errors[field.name]}</StyledError>
+                      ) : null}
                     </InputWrapper>
                   );
                 }}

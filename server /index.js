@@ -1,5 +1,11 @@
 const { ApolloServer, gql } = require('apollo-server-express');
 const express = require('express');
+const mongoose = require('mongoose');
+
+mongoose.connect(
+  'mongodb+srv://papadopan:papadopan@cluster0-mvkmt.mongodb.net/test?retryWrites=true&w=majority',
+  { useNewUrlParser: true }
+);
 
 const app = express();
 
@@ -12,6 +18,7 @@ const users = [
 
 const typeDefs = gql`
   type User {
+    _id: ID
     username: String
     email: String
   }
@@ -22,18 +29,30 @@ const typeDefs = gql`
 
   type Mutation {
     signUp(username: String!, email: String!): User
+    logIn(username: String!, email: String!): User
   }
 `;
 
 const resolvers = {
   Query: {
-    users: () => users
+    users: () => User.find()
   },
   Mutation: {
     signUp: (_, { username, email }) => {
-      const user = { username, email };
-      users.push(user);
-      return user;
+      const newUser = new User({
+        _id: mongoose.Types.ObjectId(),
+        username,
+        email
+      });
+      newUser.save();
+    },
+    logIn: async (_, { username, email }) => {
+      let registeredUser = {};
+      await User.findOne({ email, username }).then(doc => {
+        registeredUser = doc;
+      });
+
+      return registeredUser || null;
     }
   }
 };
