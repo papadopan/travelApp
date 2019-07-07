@@ -74,14 +74,14 @@ const validationSchema = yup.object().shape({
     .required()
 });
 
-const LogIn = ({ signUp }) => {
+const LogIn = ({ logIn }) => {
   return (
     <StyledLogIn>
       <Formik
         validationSchema={validationSchema}
         initialValues={initialValues}
         onSubmit={values => {
-          signUp({ variables: { username: values.username, email: values.email } });
+          logIn({ variables: { username: values.username, email: values.email } });
         }}
       >
         {({ isSubmiting }) => {

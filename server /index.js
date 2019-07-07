@@ -11,11 +11,6 @@ const app = express();
 
 const User = require('./db/schema');
 
-const users = [
-  { username: 'papadopan', email: 'apapa@gmail.com' },
-  { username: 'sofia', email: 'sofiazste@gmail.com' }
-];
-
 const typeDefs = gql`
   type User {
     _id: ID
@@ -51,6 +46,8 @@ const resolvers = {
       await User.findOne({ email, username }).then(doc => {
         registeredUser = doc;
       });
+
+      console.log(registeredUser);
 
       return registeredUser || null;
     }
