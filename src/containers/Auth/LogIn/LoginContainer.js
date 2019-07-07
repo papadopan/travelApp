@@ -15,14 +15,23 @@ const LOG_IN = gql`
 const SignUpContainer = () => {
   return (
     <Mutation mutation={LOG_IN}>
-      {(logIn, { data }) => {
-        if (!data) {
-          return <LogIn logIn={logIn} />;
+      {(logIn, { data, loading, error }) => {
+        if (loading) {
+          return 'Loading...';
         }
-        if (!data.logIn) {
-          return <div>null</div>;
+
+        if (error) {
+          return `Error .... ${error.message}`;
         }
-        return 'Success';
+
+        if (data) {
+          if (data.logIn) {
+            return 'Success';
+          }
+          return 'Not user';
+        }
+
+        return <LogIn logIn={logIn} />;
       }}
     </Mutation>
   );

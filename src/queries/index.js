@@ -18,4 +18,4 @@ const LOG_IN = gql`
   }
 `;
 
-export default SIGN_UP;
+export { LOG_IN, SIGN_UP };

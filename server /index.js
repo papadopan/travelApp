@@ -33,21 +33,30 @@ const resolvers = {
     users: () => User.find()
   },
   Mutation: {
-    signUp: (_, { username, email }) => {
+    signUp: async (_, { username, email }) => {
+      let status;
+      await User.find({ email, username }).then(doc => {
+        status = doc.length;
+      });
+
+      if (status) {
+        return null;
+      }
+
       const newUser = new User({
         _id: mongoose.Types.ObjectId(),
         username,
         email
       });
+
       newUser.save();
+      return newUser;
     },
     logIn: async (_, { username, email }) => {
       let registeredUser = {};
       await User.findOne({ email, username }).then(doc => {
         registeredUser = doc;
       });
-
-      console.log(registeredUser);
 
       return registeredUser || null;
     }

@@ -1,19 +1,30 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
-import gql from 'graphql-tag';
 import SignUp from './SignUp';
-
-const SIGN_UP = gql`
-  mutation signUp($username: String!, $email: String!) {
-    signUp(username: $username, email: $email) {
-      username
-      email
-    }
-  }
-`;
+import { SIGN_UP } from '../../../queries/index';
 
 const SignUpContainer = () => {
-  return <Mutation mutation={SIGN_UP}>{(signUp, { data }) => <SignUp signUp={signUp} />}</Mutation>;
-};
+  return (
+    <Mutation mutation={SIGN_UP}>
+      {(signUp, { data, loading, error }) => {
+        if (loading) {
+          return 'Loading....';
+        }
 
+        if (error) {
+          return `Error... ${error.message}`;
+        }
+
+        if (data) {
+          if (data.signUp) {
+            return 'Success';
+          }
+          return 'This email is already registered';
+        }
+
+        return <SignUp signUp={signUp} />;
+      }}
+    </Mutation>
+  );
+};
 export default SignUpContainer;
