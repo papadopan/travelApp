@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 
-const StyledLogIn = styled.div`
+const StyledSignUp = styled.div`
   height: 100%;
   border: 1px solid var(--color-secondary);
   padding: 2rem;
@@ -76,7 +76,7 @@ const validationSchema = yup.object().shape({
 
 const SignUp = ({ signUp }) => {
   return (
-    <StyledLogIn>
+    <StyledSignUp>
       <Formik
         validationSchema={validationSchema}
         initialValues={initialValues}
@@ -118,7 +118,7 @@ const SignUp = ({ signUp }) => {
           );
         }}
       </Formik>
-    </StyledLogIn>
+    </StyledSignUp>
   );
 };
 
