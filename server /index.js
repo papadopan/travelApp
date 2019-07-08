@@ -1,6 +1,7 @@
 const { ApolloServer, gql } = require('apollo-server-express');
 const express = require('express');
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 mongoose.connect(
   'mongodb+srv://papadopan:papadopan@cluster0-mvkmt.mongodb.net/test?retryWrites=true&w=majority',
@@ -16,6 +17,7 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
+    password: String
   }
 
   type Query {
@@ -23,7 +25,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    signUp(username: String!, email: String!): User
+    signUp(username: String!, email: String!, password: String!): User
     logIn(username: String!, email: String!): User
   }
 `;
@@ -33,7 +35,7 @@ const resolvers = {
     users: () => User.find()
   },
   Mutation: {
-    signUp: async (_, { username, email }) => {
+    signUp: async (_, { username, email, password }) => {
       let status;
       await User.find({ email, username }).then(doc => {
         status = doc.length;
@@ -46,7 +48,8 @@ const resolvers = {
       const newUser = new User({
         _id: mongoose.Types.ObjectId(),
         username,
-        email
+        email,
+        password: await bcrypt.hash(password, 12)
       });
 
       newUser.save();

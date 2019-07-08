@@ -9,7 +9,8 @@ import theme from './utils/theme';
 import GlobalStyles from './utils/global';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql'
+  uri: 'http://localhost:4000/graphql',
+  onError: e => console.log('Error', e)
 });
 
 ReactDOM.render(

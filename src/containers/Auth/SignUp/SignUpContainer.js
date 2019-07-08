@@ -1,7 +1,16 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
 import SignUp from './SignUp';
-import { SIGN_UP } from '../../../queries/index';
+
+const SIGN_UP = gql`
+  mutation signUp($username: String!, $email: String!, $password: String!) {
+    signUp(username: $username, email: $email, password: $password) {
+      username
+      email
+    }
+  }
+`;
 
 const SignUpContainer = () => {
   return (
