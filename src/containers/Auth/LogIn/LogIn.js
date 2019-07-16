@@ -63,15 +63,18 @@ const StyledError = styled.div`
 
 const initialValues = {
   username: '',
-  email: ''
+  password: ''
 };
 
 const validationSchema = yup.object().shape({
   username: yup.string().required('username is required'),
-  email: yup
+  password: yup
     .string()
-    .email()
-    .required()
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
+      '8 characters (1 lowercase, 1 uppercase, 1 digit)'
+    )
+    .required('password is required')
 });
 
 const LogIn = ({ logIn }) => {
@@ -81,7 +84,7 @@ const LogIn = ({ logIn }) => {
         validationSchema={validationSchema}
         initialValues={initialValues}
         onSubmit={values => {
-          logIn({ variables: { username: values.username, email: values.email } });
+          logIn({ variables: { username: values.username, password: values.password } });
         }}
       >
         {({ isSubmiting }) => {
@@ -99,11 +102,11 @@ const LogIn = ({ logIn }) => {
                   );
                 }}
               </Field>
-              <Field name="email">
+              <Field name="password">
                 {({ form: { errors, touched }, field }) => {
                   return (
                     <InputWrapper>
-                      <StyledInput {...field} type="text" placeholder="email" />
+                      <StyledInput {...field} type="password" placeholder="password" />
                       {touched[field.name] && errors[field.name] ? (
                         <StyledError>{errors[field.name]}</StyledError>
                       ) : null}

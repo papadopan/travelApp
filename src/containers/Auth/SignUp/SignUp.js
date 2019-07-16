@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Formik, Field, Form } from 'formik';
+import { NavLink } from 'react-router-dom';
 import * as yup from 'yup';
 
 const StyledSignUp = styled.div`
@@ -61,6 +62,12 @@ const StyledError = styled.div`
   text-align: center;
   position: absolute;
   bottom: 0;
+  font-size: 1.2rem;
+`;
+
+const Text = styled.p`
+  text-align: center;
+  margin-top: 3rem;
   font-size: 1.2rem;
 `;
 
@@ -139,6 +146,11 @@ const SignUp = ({ signUp }) => {
               <StyledButton type="submit" disabled={isSubmiting}>
                 sign up
               </StyledButton>
+
+              <Text>
+                Already have an account?
+                <NavLink to="login"> login</NavLink>
+              </Text>
             </StyledForm>
           );
         }}

@@ -1,7 +1,11 @@
-const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const typeDefs = require('./typeDefs');
+const resolvers = require('./resolvers');
+const isAuth = require('./middleware/isAuth');
 
 mongoose.connect(
   'mongodb+srv://papadopan:papadopan@cluster0-mvkmt.mongodb.net/test?retryWrites=true&w=majority',
@@ -10,63 +14,19 @@ mongoose.connect(
 
 const app = express();
 
-const User = require('./db/schema');
+app.use(cors());
+app.use(cookieParser());
 
-const typeDefs = gql`
-  type User {
-    _id: ID
-    username: String
-    email: String
-    password: String
+app.use(isAuth);
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req, res }) => {
+    return { req, res };
   }
+});
 
-  type Query {
-    users: [User]
-  }
-
-  type Mutation {
-    signUp(username: String!, email: String!, password: String!): User
-    logIn(username: String!, email: String!): User
-  }
-`;
-
-const resolvers = {
-  Query: {
-    users: () => User.find()
-  },
-  Mutation: {
-    signUp: async (_, { username, email, password }) => {
-      let status;
-      await User.find({ email, username }).then(doc => {
-        status = doc.length;
-      });
-
-      if (status) {
-        return null;
-      }
-
-      const newUser = new User({
-        _id: mongoose.Types.ObjectId(),
-        username,
-        email,
-        password: await bcrypt.hash(password, 12)
-      });
-
-      newUser.save();
-      return newUser;
-    },
-    logIn: async (_, { username, email }) => {
-      let registeredUser = {};
-      await User.findOne({ email, username }).then(doc => {
-        registeredUser = doc;
-      });
-
-      return registeredUser || null;
-    }
-  }
-};
-
-const server = new ApolloServer({ typeDefs, resolvers });
 server.applyMiddleware({ app });
 
 app.listen({ port: 4000 }, () => {

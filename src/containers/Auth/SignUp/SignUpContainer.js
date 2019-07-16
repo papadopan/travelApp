@@ -2,6 +2,7 @@ import React from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import SignUp from './SignUp';
+import Loader from '../../../components/Loader/Loader';
 
 const SIGN_UP = gql`
   mutation signUp($username: String!, $email: String!, $password: String!) {
@@ -17,7 +18,7 @@ const SignUpContainer = () => {
     <Mutation mutation={SIGN_UP}>
       {(signUp, { data, loading, error }) => {
         if (loading) {
-          return 'Loading....';
+          return <Loader />;
         }
 
         if (error) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { connect } from 'react-redux';
 import Logo from './Logo';
 import NavBar from './NavBar';
 import Menu from './Menu';
@@ -23,16 +23,25 @@ const LeftWrapper = styled.div`
   align-items: center;
 `;
 
-const Header = () => {
+const Header = ({ loggedIn }) => {
   return (
     <StyledHeader>
       <LeftWrapper>
         <Logo />
         <NavBar />
       </LeftWrapper>
-      <Menu />
+      {!loggedIn && <Menu />}
     </StyledHeader>
   );
 };
 
-export default Header;
+const mapStateToProps = state => ({
+  loggedIn: state.loggedIn
+});
+
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);
