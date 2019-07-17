@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { IntlProvider, addLocaleData } from 'react-intl';
-import en from 'react-intl/locale-data/en';
-import el from 'react-intl/locale-data/el';
+
 import { connect } from 'react-redux';
 import Layout from '../Layout/Layout';
 import LogIn from '../containers/Auth/LogIn';
@@ -11,33 +9,28 @@ import Countries from '../containers/Countries';
 import Profile from '../containers/Profile';
 import * as actions from '../store/actions';
 
-import messages from '../translations';
 import Loader from '../components/Loader/Loader';
 
-addLocaleData([...en, ...el]);
-
-const lang = 'en';
 const App = ({ loggedIn, login }) => {
   useEffect(() => {
-    if (document.cookie) {
+    console.log('loggedIn', loggedIn);
+    if (localStorage.getItem('token')) {
       login();
     }
   });
 
   return (
-    <IntlProvider locale={lang} messages={messages[lang]}>
-      <Layout>
-        <Loader />
-        <Switch>
-          <Route path="/countries" component={Countries} />
-          <Route path="/profile" component={Profile} />
-          {loggedIn && <Redirect to="/countries" exact />}
-          {!loggedIn && <Route path="/login" component={LogIn} />}
-          {!loggedIn && <Route path="/signup" component={SignUp} />}
-          {!loggedIn && <Redirect to="/login" exact />}
-        </Switch>
-      </Layout>
-    </IntlProvider>
+    <Layout>
+      <Loader />
+      <Switch>
+        <Route path="/countries" exact component={Countries} />
+        {loggedIn && <Route path="/profile" exact component={Profile} />}
+        {!loggedIn && <Route from="/" path="/login" component={LogIn} exact />}
+        {!loggedIn && <Route path="/signup" component={SignUp} />}
+        {loggedIn && <Redirect to="/profile" />}
+        {!loggedIn && <Redirect to="/login" exact />}
+      </Switch>
+    </Layout>
   );
 };
 

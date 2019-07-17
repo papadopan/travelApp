@@ -35,7 +35,7 @@ const LogInContainer = ({ login, loadingOn, loadingOff }) => {
           if (data.logIn) {
             // update the state that the user is loggedIn
             login();
-            document.cookie = `AUTH=${data.logIn.token}`;
+            localStorage.setItem('token', data.logIn.token);
           }
           return 'Not user';
         }
