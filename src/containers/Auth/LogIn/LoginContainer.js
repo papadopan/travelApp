@@ -31,7 +31,6 @@ const LogInContainer = ({ login, loadingOn, loadingOff }) => {
         if (data) {
           // remove the spinner
           loadingOff();
-
           if (data.logIn) {
             // update the state that the user is loggedIn
             login();

@@ -16,7 +16,7 @@ const Users = gql`
   }
 `;
 
-const ProfileContainer = ({ loadingOn, loadingOff }) => {
+const ProfileContainer = ({ loadingOn, loadingOff, logout }) => {
   return (
     <Query query={Users}>
       {({ data, loading, error }) => {
@@ -27,6 +27,9 @@ const ProfileContainer = ({ loadingOn, loadingOff }) => {
         }
 
         if (error) {
+          loadingOff();
+          localStorage.removeItem('token');
+          logout();
           return `Error .... ${error.message}`;
         }
 
@@ -44,7 +47,8 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
   loadingOn: () => dispatch(actions.requestStart()),
-  loadingOff: () => dispatch(actions.requestEnd())
+  loadingOff: () => dispatch(actions.requestEnd()),
+  logout: () => dispatch(actions.logOut())
 });
 
 export default connect(

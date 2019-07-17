@@ -49,15 +49,9 @@ const resolvers = {
       }
 
       // create a token
-      const token = JWT.sign(
-        {
-          iss: 'papadopan',
-          sub: registeredUser.id,
-          iat: new Date().getTime(), // current time
-          exp: new Date().setDate(new Date().getDate() + 1) // current date + 1 day
-        },
-        'TheSecretCombinationIsAMysteryForYou'
-      );
+      const token = JWT.sign({ sub: registeredUser.id }, 'TheSecretCombinationIsAMysteryForYou', {
+        expiresIn: '1h'
+      });
 
       return {
         email: registeredUser.email,
