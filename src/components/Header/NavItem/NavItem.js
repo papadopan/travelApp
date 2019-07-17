@@ -13,15 +13,21 @@ const StyledLink = styled(NavLink)`
   padding: 1rem;
   border-bottom: 0px solid var(--color-secondary);
 
-  &:hover {
+  &.active {
     border-bottom: 1px solid var(--color-secondary);
+  }
+
+  &:hover {
+    box-shadow: -1px -2px 22px -9px rgba(0, 0, 0, 0.75);
   }
 `;
 
 const NavItem = ({ children, link }) => {
   return (
     <StyledNavItem>
-      <StyledLink to={link}>{children}</StyledLink>
+      <StyledLink exact activeClassName="active" to={`/${link}`}>
+        {children}
+      </StyledLink>
     </StyledNavItem>
   );
 };

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Logo from './Logo';
 import NavBar from './NavBar';
 import Menu from './Menu';
+import LogOut from './Logout';
 
 const StyledHeader = styled.div`
   position: fixed;
@@ -28,9 +29,10 @@ const Header = ({ loggedIn }) => {
     <StyledHeader>
       <LeftWrapper>
         <Logo />
-        <NavBar />
+        {loggedIn && <NavBar />}
       </LeftWrapper>
       {!loggedIn && <Menu />}
+      {loggedIn && <LogOut />}
     </StyledHeader>
   );
 };
