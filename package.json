@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "4.2.1",
     "@material-ui/icons": "4.2.1",
+    "@material-ui/styles": "^4.2.1",
     "apollo-boost": "^0.4.3",
     "apollo-cache-inmemory": "^1.6.2",
     "apollo-client": "^2.6.3",
@@ -37,6 +38,7 @@
     "redux": "^4.0.1",
     "redux-firestore": "^0.8.0",
     "redux-thunk": "^2.3.0",
+    "sort-package-json": "^1.22.1",
     "styled-components": "^4.3.2",
     "yup": "^0.27.0"
   },

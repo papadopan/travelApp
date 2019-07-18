@@ -10,7 +10,6 @@ export default createGlobalStyle`
 }
 
 html{
-    font-size:62.5%;
     --color-white: ${props => props.theme.colors.white};
     --color-black: ${props => props.theme.colors.black};
     --color-main: ${props => props.theme.colors.main};
@@ -23,5 +22,15 @@ html{
 a, li, ul {
     text-decoration:none;
     list-style:none;
+}
+
+body{
+    padding-top: 5rem;
+}
+
+#root{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 `;

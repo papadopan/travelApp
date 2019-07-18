@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
@@ -9,9 +8,9 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink, concat } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
 import App from './App';
-import theme from './utils/theme';
 import GlobalStyles from './utils/global';
 import store from './store';
+import { Theme } from './theme/components';
 
 // create a link for our graphql server
 const httpLink = new HttpLink({ uri: 'http://localhost:4000/graphql' });
@@ -38,12 +37,12 @@ ReactDOM.render(
   <Provider store={store}>
     <ApolloProvider client={client}>
       <BrowserRouter>
-        <ThemeProvider theme={theme}>
+        <Theme>
           <React.Fragment>
             <GlobalStyles />
             <App />
           </React.Fragment>
-        </ThemeProvider>
+        </Theme>
       </BrowserRouter>
     </ApolloProvider>
   </Provider>,

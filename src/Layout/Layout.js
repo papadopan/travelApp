@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import Header from '../components/Header';
+import { NavBar } from '../theme/components';
 
 const StyledLayout = styled.div`
-  min-height: calc(100vh - 10rem);
   width: 100%;
   display: flex;
-  align-items: center;
+  flex: 1;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 `;
 
 const Layout = ({ children }) => (
   <React.Fragment>
-    <Header />
+    <NavBar />
     <StyledLayout>{children}</StyledLayout>
   </React.Fragment>
 );

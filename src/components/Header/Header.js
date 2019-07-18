@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
 import Logo from './Logo';
 import NavBar from './NavBar';
@@ -7,16 +7,19 @@ import Menu from './Menu';
 import LogOut from './Logout';
 
 const StyledHeader = styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 10rem;
-  background: var(--color-main);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 3rem;
+  ${({ theme }) => css`
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 10rem;
+    background: var(--color-main);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    color: ${theme.colors.secondary};
+  `}
 `;
 
 const LeftWrapper = styled.div`

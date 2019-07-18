@@ -7,6 +7,9 @@ const Theme = {
     black: '#000000',
     shadow: 'rgba(0,0,0,0.2)'
   },
+  spacing: {
+    small: '1rem'
+  },
   mediaQueries: {
     small: 'only screen and (max-width: 30em)',
     medium: 'only screen and (max-width: 50em)',
