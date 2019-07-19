@@ -2,9 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button } from '../../theme/components';
 
-const StyledCountries = styled.div`
-  margin-top: 10rem;
-`;
+const StyledCountries = styled.div``;
 const Countries = () => {
   return (
     <StyledCountries>

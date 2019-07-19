@@ -6,6 +6,9 @@ import theme from '../../../utils/theme';
 
 const MuiTheme = createMuiTheme({
   palette: {
+    error: {
+      main: '#A9A9A9'
+    },
     primary: {
       main: '#F02B67'
     },

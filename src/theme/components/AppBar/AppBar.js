@@ -7,6 +7,7 @@ import LogoIcon from '@material-ui/icons/LocationOn';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Fade from '@material-ui/core/Fade';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import Toolbar from '../ToolBar';
 import { Menu, IconButton, MenuItem } from '../index';
 import * as actions from '../../../store/actions';
@@ -33,7 +34,7 @@ const StyledToolBar = styled(Toolbar)`
   justify-content: space-between;
 `;
 
-const NavBar = ({ logOut }) => {
+const NavBar = ({ logOut, loggedIn }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -57,40 +58,48 @@ const NavBar = ({ logOut }) => {
           <IconButton edge="start" color="inherit" aria-label="Menu">
             <LogoIcon />
           </IconButton>
-          <StyledLink component={NavLink} to="/countries" color="secondary" underline="none">
-            Countries
-          </StyledLink>
-          <StyledLink component={NavLink} to="/profile" color="secondary" underline="none">
-            Profile
-          </StyledLink>
+          {loggedIn && (
+            <StyledLink component={NavLink} to="/countries" color="secondary" underline="none">
+              <FormattedMessage defaultMessage="Countries" id="header.countries" />
+            </StyledLink>
+          )}
+          {loggedIn && (
+            <StyledLink component={NavLink} to="/profile" color="secondary" underline="none">
+              <FormattedMessage defaultMessage="Profile" id="header.profile" />
+            </StyledLink>
+          )}
         </div>
-        <div>
-          <IconButton
-            aria-label="More"
-            aria-controls="long-menu"
-            aria-haspopup="true"
-            onClick={handleClick}
-          >
-            <MoreVertIcon />
-          </IconButton>
-          <Menu
-            id="fade-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={open}
-            onClose={handleClose}
-            TransitionComponent={Fade}
-          >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={() => removeSession()}>Logout</MenuItem>
-          </Menu>
-        </div>
+        {loggedIn && (
+          <div>
+            <IconButton
+              aria-label="More"
+              aria-controls="long-menu"
+              aria-haspopup="true"
+              onClick={handleClick}
+            >
+              <MoreVertIcon />
+            </IconButton>
+            <Menu
+              id="fade-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={open}
+              onClose={handleClose}
+              TransitionComponent={Fade}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={() => removeSession()}>Logout</MenuItem>
+            </Menu>
+          </div>
+        )}
       </StyledToolBar>
     </AppBar>
   );
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  loggedIn: state.loggedIn
+});
 
 const mapDispatchToProps = dispatch => ({
   logOut: () => dispatch(actions.logOut())

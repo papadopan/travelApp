@@ -1,5 +1,7 @@
 {
   "header.menu": "Αρχική",
   "header.countries": "Χώρες",
-  "header.profile": "Προφίλ"
+  "header.profile": "Προφίλ",
+  "login.title": "Είσοδος",
+  "signup.title": "Εγγραφή"
 }

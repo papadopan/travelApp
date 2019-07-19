@@ -25,7 +25,7 @@ a, li, ul {
 }
 
 body{
-    padding-top: 5rem;
+    padding-top: 4rem;
 }
 
 #root{

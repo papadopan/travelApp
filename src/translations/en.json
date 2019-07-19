@@ -1,5 +1,7 @@
 {
   "header.menu": "Menu",
   "header.countries": "Countries",
-  "header.profile": "My Profile"
+  "header.profile": "My Profile",
+  "login.title": "Log In",
+  "signup.title": "Sign Up"
 }
