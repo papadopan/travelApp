@@ -11,13 +11,18 @@ import Grow from '@material-ui/core/Grow';
 const StyledCountries = styled.div`
   padding: 3rem;
   display: flex;
+  align-items: center;
 `;
 const TItle = styled.p`
   font-size: 3rem;
   margin-right: 1rem;
 `;
 
-const options = ['Europe', 'America', 'Australia', 'Asia'];
+const SButton = styled(Button)`
+  font-size: 3rem;
+`;
+
+const options = ['Europe', 'America', 'Africa', 'Australia', 'Asia'];
 const Countries = () => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -43,9 +48,16 @@ const Countries = () => {
   return (
     <StyledCountries>
       <TItle>My next destination will be in</TItle>
-      <Button color="primary" onClick={handleToggle} ref={anchorRef}>
+      <SButton
+        color="secondary"
+        variant="text"
+        size="large"
+        style={{ fontSize: '2rem' }}
+        onClick={handleToggle}
+        ref={anchorRef}
+      >
         {options[selectedIndex]}
-      </Button>
+      </SButton>
       <Popper open={open} anchorEl={anchorRef.current} transition disablePortal>
         {({ TransitionProps, placement }) => (
           <Grow
@@ -60,7 +72,6 @@ const Countries = () => {
                   {options.map((option, index) => (
                     <MenuItem
                       key={option}
-                      disabled={index === 2}
                       selected={index === selectedIndex}
                       onClick={event => handleMenuItemClick(event, index)}
                     >
