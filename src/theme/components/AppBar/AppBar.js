@@ -1,6 +1,6 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Link from '@material-ui/core/Link';
 import { NavLink } from 'react-router-dom';
 import LogoIcon from '@material-ui/icons/LocationOn';
@@ -13,21 +13,19 @@ import { Menu, IconButton, MenuItem } from '../index';
 import * as actions from '../../../store/actions';
 
 const StyledLink = styled(Link)`
-  ${({ theme }) => css`
-    color: var(--color-secondary);
-    font-size: 1rem;
-    letter-spacing: 1px;
-    padding: 1rem;
-    border-bottom: 0px solid var(--color-secondary);
-    underline: none;
-    &.active {
-      border-bottom: 1px solid var(--color-secondary);
-    }
+  color: var(--color-secondary);
+  font-size: 1rem;
+  letter-spacing: 1px;
+  padding: 1rem;
+  border-bottom: 0px solid var(--color-secondary);
+  underline: none;
+  &.active {
+    border-bottom: 1px solid var(--color-secondary);
+  }
 
-    &:hover {
-      underline: none;
-    }
-  `}
+  &:hover {
+    underline: none;
+  }
 `;
 
 const StyledToolBar = styled(Toolbar)`

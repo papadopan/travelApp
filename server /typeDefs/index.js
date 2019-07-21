@@ -8,7 +8,7 @@ const typeDefs = gql`
     password: String
   }
 
-  type AuthData {
+  type SignData {
     email: String!
     username: String!
     token: String!
@@ -21,7 +21,7 @@ const typeDefs = gql`
 
   type Mutation {
     signUp(username: String!, email: String!, password: String!): User!
-    logIn(username: String!, password: String!): AuthData
+    logIn(username: String!, password: String!): SignData
   }
 `;
 

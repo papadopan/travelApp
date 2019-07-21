@@ -5,10 +5,8 @@ import loader from '../../assets/loading.gif';
 
 const StyledLoader = styled.div`
   width: 100%;
-  background: red;
   position: absolute;
-  margin-top: 10rem;
-  height: calc(100vh - 10rem);
+  height: calc(100vh - 4rem);
   z-index: 100;
   display: ${props => (props.show ? 'flex' : 'none')};
   justify-content: center;

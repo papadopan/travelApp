@@ -32,6 +32,5 @@ module.exports = (req, _, next) => {
     return next();
   }
 
-  console.log('isAuth', req.isAuth);
   return next();
 };

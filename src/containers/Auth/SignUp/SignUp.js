@@ -1,9 +1,9 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Formik, Field, Form } from 'formik';
+import Link from '@material-ui/core/Link';
 import { NavLink } from 'react-router-dom';
 import * as yup from 'yup';
-import Link from '@material-ui/core/Link';
 
 import { FormattedMessage } from 'react-intl';
 import logInLogo from '../../../assets/login.jpg';
@@ -93,14 +93,13 @@ const LinkDiv = styled.div`
 `;
 
 const LinkTitle = styled(Link)`
-  ${({ theme }) => css`
-    font-size: 3.5rem;
-    padding-right: 2rem;
+  font-size: 3.5rem;
+  padding-right: 2rem;
+  color: green;
 
-    &.active {
-      color: var(--color-main);
-    }
-  `}
+  &.active {
+    color: var(--color-main);
+  }
 `;
 
 const initialValues = {

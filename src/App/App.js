@@ -23,7 +23,7 @@ const App = ({ loggedIn, login }) => {
 
   addLocaleData([...en, ...el]);
 
-  const lang = 'el';
+  const lang = 'en';
 
   return (
     <IntlProvider locale={lang} messages={messages[lang]}>

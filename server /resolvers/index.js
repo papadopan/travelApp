@@ -7,8 +7,6 @@ const User = require('.././db/schema');
 const resolvers = {
   Query: {
     users: (parent, args, { req }) => {
-      console.log('as', req.isAuth);
-
       if (!req.isAuth) {
         throw new AuthenticationError('Unauthorized');
       }
@@ -29,6 +27,7 @@ const resolvers = {
         email,
         password: await bcrypt.hash(password, 12)
       });
+
       // save and return the user
       await newUser.save();
       return newUser;

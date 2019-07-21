@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 import Link from '@material-ui/core/Link';
@@ -94,14 +94,12 @@ const LinkDiv = styled.div`
 `;
 
 const LinkTitle = styled(Link)`
-  ${({ theme }) => css`
-    font-size: 3.5rem;
-    padding-right: 2rem;
+  font-size: 3.5rem;
+  padding-right: 2rem;
 
-    &.active {
-      color: var(--color-main);
-    }
-  `}
+  &.active {
+    color: var(--color-main);
+  }
 `;
 
 const initialValues = {
