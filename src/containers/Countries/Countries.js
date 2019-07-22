@@ -20,6 +20,7 @@ const StyledCountries = styled.div`
 const Header = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 2rem;
 `;
 
 const Body = styled.div`
