@@ -3,7 +3,9 @@ import * as actions from '../actions';
 const initialState = {
   loggedIn: false,
   loading: false,
-  error: false
+  error: false,
+  countries: [],
+  country: {}
 };
 
 export default function(state = initialState, action) {
@@ -16,6 +18,8 @@ export default function(state = initialState, action) {
       return { ...state, loggedIn: true };
     case actions.LOG_OUT:
       return { ...state, loggedIn: false };
+    case actions.UPDATE_COUNTRIES:
+      return { ...state, countries: action.payload };
     default:
       return state;
   }
