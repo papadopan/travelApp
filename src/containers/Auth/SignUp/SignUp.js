@@ -189,7 +189,7 @@ const SignUp = ({ signUp }) => {
                   }}
                 </Field>
                 <StyledButton type="submit" disabled={isSubmiting}>
-                  sign up
+                  <FormattedMessage defaultMessage="Sign Up" id="signup.title" />
                 </StyledButton>
               </StyledForm>
             );

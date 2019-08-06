@@ -24,19 +24,31 @@ const App = ({ loggedIn, login }) => {
   addLocaleData([...en, ...el]);
 
   const lang = 'en';
+  let routes;
+
+  if (localStorage.getItem('token')) {
+    routes = (
+      <Switch>
+        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/countries" component={Countries} />
+        <Redirect to="/profile" />
+      </Switch>
+    );
+  } else {
+    routes = (
+      <Switch>
+        <Route from="/" exact path="/login" component={LogIn} />
+        <Route path="/signup" component={SignUp} />
+        <Redirect to="/login" />
+      </Switch>
+    );
+  }
 
   return (
     <IntlProvider locale={lang} messages={messages[lang]}>
       <Layout>
         <Loader />
-        <Switch>
-          <Route path="/countries" exact component={Countries} />
-          {loggedIn && <Route path="/profile" exact component={Profile} />}
-          {!loggedIn && <Route from="/" path="/login" component={LogIn} exact />}
-          {!loggedIn && <Route path="/signup" component={SignUp} />}
-          {loggedIn && <Redirect to="/profile" />}
-          {!loggedIn && <Redirect to="/login" exact />}
-        </Switch>
+        {routes}
       </Layout>
     </IntlProvider>
   );

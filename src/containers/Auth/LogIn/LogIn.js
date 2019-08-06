@@ -166,7 +166,7 @@ const LogIn = ({ logIn }) => {
                   }}
                 </Field>
                 <StyledButton type="submit" disabled={isSubmiting}>
-                  log in
+                <FormattedMessage defaultMessage="Log In" id="login.title" />
                 </StyledButton>
               </StyledForm>
             );
