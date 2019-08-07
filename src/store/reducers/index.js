@@ -1,7 +1,7 @@
 import * as actions from '../actions';
 
 const initialState = {
-  loggedIn: false,
+  loggedIn: true,
   loading: false,
   error: false,
   countries: [],

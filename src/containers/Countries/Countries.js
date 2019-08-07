@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -64,10 +64,15 @@ const Bottom = styled.div`
 `;
 
 const options = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
-const Countries = ({ fetchCountries, countries }) => {
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(3);
+const Countries = ({ fetchCountries, countries, filter }) => {
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
+  const [selectedIndex, setSelectedIndex] = useState(3);
+
+  // start by loading Europe countries
+  useEffect(() => {
+    fetchCountries(options[3]);
+  }, []);
 
   function handleMenuItemClick(event, index) {
     setSelectedIndex(index);
@@ -149,7 +154,8 @@ const Countries = ({ fetchCountries, countries }) => {
 };
 
 const mapStateToProps = state => ({
-  countries: state.countries
+  countries: state.countries,
+  filter: state.filterCountry
 });
 
 const mapDispatchToProps = dispatch => ({

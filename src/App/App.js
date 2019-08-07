@@ -26,7 +26,7 @@ const App = ({ loggedIn, login }) => {
   const lang = 'en';
   let routes;
 
-  if (localStorage.getItem('token')) {
+  if (loggedIn) {
     routes = (
       <Switch>
         <Route exact path="/profile" component={Profile} />
